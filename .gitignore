@@ -3,6 +3,7 @@
 *.swp
 *~
 .DS_Store
+*.sync-conflict
 
 # Build artifacts
 .clang_complete
