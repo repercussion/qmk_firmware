@@ -15,6 +15,79 @@
  */
 
 #include QMK_KEYBOARD_H
+enum custom_keycodes {
+        SPTFY = SAFE_RANGE,
+        DAC,
+        SWAN,
+        IINA,
+        NAVI
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+        switch (keycode) {
+        case SPTFY:
+                if (record->event.pressed) {
+                        // when keycode SPTFY is pressed
+                        SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
+                        _delay_ms(100);
+                        SEND_STRING("Spotify");
+                        _delay_ms(100);
+                        SEND_STRING(SS_TAP(X_ENTER));
+                } else {
+                        // when keycode QMKBEST is released
+                }
+                break;
+        case DAC:
+                if (record->event.pressed) {
+                        // when keycode SPTFY is pressed
+                        SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
+                        _delay_ms(100);
+                        SEND_STRING("DAC");
+                        _delay_ms(100);
+                        SEND_STRING(SS_TAP(X_ENTER));
+                } else {
+                        // when keycode QMKBEST is released
+                }
+                break;
+        case SWAN:
+                if (record->event.pressed) {
+                        // when keycode SPTFY is pressed
+                        SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
+                        _delay_ms(100);
+                        SEND_STRING("Swan");
+                        _delay_ms(100);
+                        SEND_STRING(SS_TAP(X_ENTER));
+                } else {
+                        // when keycode QMKBEST is released
+                }
+                break;
+        case IINA:
+                if (record->event.pressed) {
+                        // when keycode SPTFY is pressed
+                        SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
+                        _delay_ms(100);
+                        SEND_STRING("IINA");
+                        _delay_ms(100);
+                        SEND_STRING(SS_TAP(X_ENTER));
+                } else {
+                        // when keycode QMKBEST is released
+                }
+                break;
+        case NAVI:
+                if (record->event.pressed) {
+                        // when keycode SPTFY is pressed
+                        SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
+                        _delay_ms(100);
+                        SEND_STRING("Navidrome");
+                        _delay_ms(100);
+                        SEND_STRING(SS_TAP(X_ENTER));
+                } else {
+                        // when keycode QMKBEST is released
+                }
+                break;
+        }
+        return true;
+};
 
 #define _BASE 0
 #define _FN1 1
@@ -22,16 +95,16 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[_BASE] = LAYOUT(
-		KC_7, KC_8, KC_9, \
-		KC_4, KC_5, KC_6, \
-		KC_1, KC_2, KC_3, \
-		KC_0, LT(_FN1, KC_DOT), KC_ENT \
+		KC__MUTE, KC_VOLD  , KC_VOLU , \
+		KC_MPRV, KC_MPLY, KC_MNXT, \
+		NAVI , SPTFY, IINA , \
+		LT(_FN1, KC_DOT), DAC, SWAN    \
 	),
 
 	[_FN1] = LAYOUT(
-		KC__MUTE, KC_VOLD  , KC_VOLU , \
-		KC_MPRV, KC_MPLY, KC_MNXT, \
-		KC_BRMD , KC_BSPC, KC_BRMU , \
-		KC_TRNS, XXXXXXX, KC_DEL    \
+		KC_7, KC_8, KC_9, \
+		KC_4, KC_5, KC_6, \
+		KC_1, KC_2, KC_3, \
+		KC_0, KC_DOT, KC_ENT \
 	)
 };

@@ -17,8 +17,10 @@
 enum custom_keycodes {
         SPTFY = SAFE_RANGE,
         DAC,
-        STICKS,
-        AIRSONIC,
+        SWAN,
+        NAVIDROME,
+        BLINC,
+        BLDEC
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -47,24 +49,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         // when keycode QMKBEST is released
                 }
                 break;
-        case STICKS:
+        case SWAN:
                 if (record->event.pressed) {
                         // when keycode SPTFY is pressed
                         SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
                         _delay_ms(100);
-                        SEND_STRING("Sticks");
+                        SEND_STRING("Swan");
                         _delay_ms(100);
                         SEND_STRING(SS_TAP(X_ENTER));
                 } else {
                         // when keycode QMKBEST is released
                 }
                 break;
-        case AIRSONIC:
+        case NAVIDROME:
                 if (record->event.pressed) {
                         // when keycode SPTFY is pressed
                         SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
                         _delay_ms(100);
-                        SEND_STRING("Airsonic");
+                        SEND_STRING("Navidrome");
                         _delay_ms(100);
                         SEND_STRING(SS_TAP(X_ENTER));
                 } else {
@@ -79,13 +81,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [0] = LAYOUT(
                 KC_MUTE, KC_MPLY, OSL(1), \
-                KC_MPRV, AIRSONIC,   KC_MNXT, \
-                DAC, SPTFY, STICKS \
+                KC_MPRV, NAVIDROME,   KC_MNXT, \
+                DAC, SPTFY, SWAN \
                 ),
         [1] = LAYOUT(
-                KC_TRNS, KC_TRNS, KC_ENTER, \
-                KC_TRNS, KC_TRNS, KC_TRNS, \
-                KC_TRNS, KC_TRNS, KC_TRNS \
+                BL_BRTG, LGUI(KC_F12), KC_ENTER, \
+                LGUI(KC_F9), KC_TRNS, LGUI(KC_F10), \
+                BL_TOGG, BL_DEC, BL_INC \
                 ),
 };
 

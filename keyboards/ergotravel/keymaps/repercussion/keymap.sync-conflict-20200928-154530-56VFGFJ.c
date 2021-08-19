@@ -35,7 +35,6 @@ enum custom_keycodes {
 #define KC_RSAD RGB_SAD
 #define KC_RVAI RGB_VAI
 #define KC_RVAD RGB_VAD
-#define KC_CTLTB CTL_T(KC_TAB)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -43,11 +42,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,----+----+----+----+----+----+----.        ,----+----+----+----+----+----+----.
        EQL, Q,   W,   E,   R,   T,   ESC,          DEL, Y,   U,   I,   O,   P,   MINS,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
-       CTLTB, A,   S,   D,   F,   G,   LBRC,         RBRC, H,   J,   K,   L,   SCLN,QUOT,
+       TAB, A,   S,   D,   F,   G,   NO,           DEL, H,   J,   K,   L,   SCLN,QUOT,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
-      LSFT,Z,   X,   C,   V,   B,   LALT,         BSPC,N,   M,   COMM,DOT, SLSH,ENT,
+       LSFT,Z,   X,   C,   V,   B,   LALT,         BSPC,N,   M,   COMM,DOT, SLSH,ENT,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
-       GRV,GRV, LBRC,RBRC,     LOWR,LGUI,         SPC, RASE,     LEFT,DOWN,UP,  RGHT
+       LCTL,GRV, LBRC,RBRC,     LOWR,LGUI,         SPC, RASE,     LEFT,DOWN,UP,  RGHT
     //`----+----+----+----+----+----+----/        \----+----+----+----+----+----+----'
   ),
 
@@ -55,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,----+----+----+----+----+----+----.        ,----+----+----+----+----+----+----.
        EQL, Q,   W,   E,   R,   T,   ESC,          DEL, Y,   U,   I,   O,   P,   MINS,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
-       CTLTB, A,   S,   D,   F,   G,   NO,           DEL, H,   J,   K,   L,   SCLN,QUOT,
+       TAB, A,   S,   D,   F,   G,   NO,           DEL, H,   J,   K,   L,   SCLN,QUOT,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
-       LSFT,Z,   X,   C,   V,   B,   LALT,        BSPC,N,   M,   COMM,DOT, SLSH,ENT,
+       LSFT,Z,   X,   C,   V,   B,   LALT,         BSPC,N,   M,   COMM,DOT, SLSH,ENT,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
        LGUI,GRV, LBRC,RBRC,     LOWR,LCTL,         SPC, RASE,     LEFT,DOWN,UP,  RGHT
     //`----+----+----+----+----+----+----/        \----+----+----+----+----+----+----'
@@ -67,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,----+----+----+----+----+----+----.        ,----+----+----+----+----+----+----.
        EQL, Q,   W,   E,   R,   T,   ESC,          DEL, Y,   U,   I,   O,   P,   MINS,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
-       CTLTB, A,   S,   D,   F,   G,   GRV,          DEL, H,   J,   K,   L,   SCLN,QUOT,
+       TAB, A,   S,   D,   F,   G,   GRV,          DEL, H,   J,   K,   L,   SCLN,QUOT,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
        LSFT,Z,   X,   C,   V,   B,   LALT,         BSPC,N,   M,   COMM,DOT, SLSH,ENT,
     //|----+----+----+----+----+----+----|        |----+----+----+----+----+----+----|
