@@ -16,25 +16,24 @@
 #include "dumbpad.h"
 
 void keyboard_pre_init_kb(void) {
-  // Set the layer LED IO as outputs
-  setPinOutput(LAYER_INDICATOR_LED_0);
-  setPinOutput(LAYER_INDICATOR_LED_1);
-  
-  keyboard_pre_init_user();
+    // Set LED IO as outputs
+    setPinOutput(LED_00);
+    setPinOutput(LED_01);
+    keyboard_pre_init_user();
 }
 
 void shutdown_user() {
-  // Shutdown the layer LEDs
-  writePinLow(LAYER_INDICATOR_LED_0);
-  writePinLow(LAYER_INDICATOR_LED_1);
+    // Shutdown LEDs
+    writePinLow(LED_00);
+    writePinLow(LED_01);
 }
 
 layer_state_t layer_state_set_kb(layer_state_t state) {
-  // Layer LEDs act as binary indication of current layer
-  uint8_t layer = biton32(state);
-  writePin(LAYER_INDICATOR_LED_0, layer & 0b1);
-  writePin(LAYER_INDICATOR_LED_1, (layer >> 1) & 0b1);
-  return layer_state_set_user(state);
+    // Layer LEDs act as binary indication of current layer
+    uint8_t layer = get_highest_layer(state);
+    writePin(LED_00, layer & 0b1);
+    writePin(LED_01, (layer >> 1) & 0b1);
+    return layer_state_set_user(state);
 }
 
 // Optional override functions below.
@@ -42,42 +41,19 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 // These are only required if you want to perform custom actions.
 
 void matrix_init_kb(void) {
-  // put your keyboard start-up code here
-  // runs once when the firmware starts up
-  for (int i = 0; i < 2; i++) {
-    writePin(LAYER_INDICATOR_LED_0, true);
-    writePin(LAYER_INDICATOR_LED_1, false);
-    wait_ms(100);
-    writePin(LAYER_INDICATOR_LED_0, true);
-    writePin(LAYER_INDICATOR_LED_1, true);
-    wait_ms(100);
-    writePin(LAYER_INDICATOR_LED_0, false);
-    writePin(LAYER_INDICATOR_LED_1, true);
-    wait_ms(100);
-    writePin(LAYER_INDICATOR_LED_0, false);
-    writePin(LAYER_INDICATOR_LED_1, false);
-    wait_ms(100);
-  }
+    // put your keyboard start-up code here
+    // runs once when the firmware starts up
+    uint8_t led_delay_ms = 80;
+    for (int i = 0; i < 2; i++) {
+        writePinHigh(LED_00);
+        writePinHigh(LED_01);
+        wait_ms(led_delay_ms);
+        writePinLow(LED_00);
+        writePinLow(LED_01);
+        if (i < 1) {
+            wait_ms(led_delay_ms);
+        }
+    }
 
-  matrix_init_user();
-}
-
-void matrix_scan_kb(void) {
-  // put your looping keyboard code here
-  // runs every cycle (a lot)
-
-  matrix_scan_user();
-}
-
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-  // put your per-action keyboard code here
-  // runs for every action, just before processing by the firmware
-
-  return process_record_user(keycode, record);
-}
-
-void led_set_kb(uint8_t usb_led) {
-  // put your keyboard LED indicator (ex: Caps Lock LED) toggling code here
-
-  led_set_user(usb_led);
+    matrix_init_user();
 }
